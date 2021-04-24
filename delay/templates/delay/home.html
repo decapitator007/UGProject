@@ -1,60 +1,128 @@
-{% load static %}
+{%load static%}
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Delay</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-</head>
-<body>
-<h1>sdasdasd</h1>
-<canvas id="myCanvas" width="700" height="700"></canvas>
-<script>
-var c=document.getElementById("myCanvas");
-var ctx=c.getContext("2d");
-ctx.beginPath();
-ctx.moveTo(0,200);
-ctx.lineTo(200,200);
-ctx.lineTo(200,0);
-ctx.lineWidth=3;
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(500,0);
-ctx.lineTo(500,200);
-ctx.lineTo(700,200);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(700,500);
-ctx.lineTo(500,500);
-ctx.lineTo(500,700);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(200,700);
-ctx.lineTo(200,500);
-ctx.lineTo(0,500);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(0,350);
-ctx.lineTo(200,350);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(350,0);
-ctx.lineTo(350,200);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(350,700);
-ctx.lineTo(350,500);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(700,350);
-ctx.lineTo(500,350);
-ctx.stroke();
-ctx.setLineDash([5,5]);
-ctx.beginPath();
-ctx.moveTo(0,275);
-ctx.lineTo(200,275);
-ctx.stroke();
-</script>
-<button type='button' class="btn">asd</button>
-</body>
+    <head>
+        <title>Delay</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="{%static 'css/home.css'%}">
+    </head>
+    <body>
+        <canvas id="myCanvas" width="700" height="700"></canvas>
+        <script>
+            var c=document.getElementById("myCanvas");
+            var ctx=c.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0,200);
+            ctx.lineTo(200,200);
+            ctx.lineTo(200,0);
+            ctx.lineWidth=3;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(500,0);
+            ctx.lineTo(500,200);
+            ctx.lineTo(700,200);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(700,500);
+            ctx.lineTo(500,500);
+            ctx.lineTo(500,700);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(200,700);
+            ctx.lineTo(200,500);
+            ctx.lineTo(0,500);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0,350);
+            ctx.lineTo(200,350);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(350,0);
+            ctx.lineTo(350,200);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(350,700);
+            ctx.lineTo(350,500);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(700,350);
+            ctx.lineTo(500,350);
+            ctx.stroke();
+            ctx.setLineDash([5,5]);
+            ctx.beginPath();
+            ctx.moveTo(0,275);
+            ctx.lineTo(200,275);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(425,0);
+            ctx.lineTo(425,200);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(700,425);
+            ctx.lineTo(500,425);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(275,700);
+            ctx.lineTo(275,500);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0,425);
+            ctx.lineTo(200,425);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(275,0);
+            ctx.lineTo(275,200);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(700,275);
+            ctx.lineTo(500,275);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(425,500);
+            ctx.lineTo(425,700);
+            ctx.stroke();
+        </script>
+        <h1>UG Project</h1>
+        <img src="{%static 'phases.png'%}" style="width:300px;height:300px;margin:50px;float:right" alt="alternatetext"><br>
+        <div class="xyz">
+            <b>2W->Two Wheeler</b><br>
+            <b>3W->Three Wheeler</b><br>
+            <b>SC->Small Car</b><br>
+            <b>BC->Big Car</b><br>
+        </div>
+        <button type='button' class="btn" style="position:absolute;top:220px;left:820px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:220px;left:925px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:255px;left:820px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:255px;left:925px;">BC-99</button>
+        <button type='button' class="btn" style="position:absolute;top:298px;left:820px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:298px;left:925px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:332px;left:820px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:332px;left:925px;">BC-99</button>
+        <button type='button' class="btn" style="position:absolute;top:20px;left:1247px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:60px;left:1247px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:100px;left:1247px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:140px;left:1247px;">BC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:20px;left:1175px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:60px;left:1175px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:100px;left:1175px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:140px;left:1175px;">BC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:370px;left:1350px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:370px;left:1455px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:405px;left:1350px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:405px;left:1455px;">BC-99</button>
+        <button type='button' class="btn" style="position:absolute;top:448px;left:1350px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:448px;left:1455px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:482px;left:1350px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:482px;left:1455px;">BC-99</button>
+        <button type='button' class="btn" style="position:absolute;top:550px;left:1097px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:590px;left:1097px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:630px;left:1097px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:670px;left:1097px;">BC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:550px;left:1025px;">2W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:590px;left:1025px;">3W-10</button>
+        <button type='button' class="btn" style="position:absolute;top:630px;left:1025px;">SC-10</button>
+        <button type='button' class="btn" style="position:absolute;top:670px;left:1025px;">BC-10</button>
+        <button type='button' class="btn2" style="position:absolute;top:570px;left:850px;">Calculate</button>
+        <button type='button' class="btn2" style="position:absolute;top:620px;left:850px;">Reset</button>
+    </body>
 </html>
