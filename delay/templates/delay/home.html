@@ -84,45 +84,42 @@
         </script>
         <h1>UG Project</h1>
         <img src="{%static 'phases.png'%}" style="width:300px;height:300px;margin:50px;float:right" alt="alternatetext"><br>
-        <div class="xyz">
-            <b>2W->Two Wheeler</b><br>
-            <b>3W->Three Wheeler</b><br>
-            <b>SC->Small Car</b><br>
-            <b>BC->Big Car</b><br>
-        </div>
-        <button type='button' class="btn" style="position:absolute;top:220px;left:820px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:220px;left:925px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:255px;left:820px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:255px;left:925px;">BC-99</button>
-        <button type='button' class="btn" style="position:absolute;top:298px;left:820px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:298px;left:925px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:332px;left:820px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:332px;left:925px;">BC-99</button>
-        <button type='button' class="btn" style="position:absolute;top:20px;left:1247px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:60px;left:1247px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:100px;left:1247px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:140px;left:1247px;">BC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:20px;left:1175px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:60px;left:1175px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:100px;left:1175px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:140px;left:1175px;">BC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:370px;left:1350px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:370px;left:1455px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:405px;left:1350px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:405px;left:1455px;">BC-99</button>
-        <button type='button' class="btn" style="position:absolute;top:448px;left:1350px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:448px;left:1455px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:482px;left:1350px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:482px;left:1455px;">BC-99</button>
-        <button type='button' class="btn" style="position:absolute;top:550px;left:1097px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:590px;left:1097px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:630px;left:1097px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:670px;left:1097px;">BC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:550px;left:1025px;">2W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:590px;left:1025px;">3W-10</button>
-        <button type='button' class="btn" style="position:absolute;top:630px;left:1025px;">SC-10</button>
-        <button type='button' class="btn" style="position:absolute;top:670px;left:1025px;">BC-10</button>
-        <button type='button' class="btn2" style="position:absolute;top:570px;left:850px;">Calculate</button>
-        <button type='button' class="btn2" style="position:absolute;top:620px;left:850px;">Reset</button>
+        <form method="POST">
+            {%csrf_token%}
+            <button type='submit' name="h_2w" class="btn" style="position:absolute;top:220px;left:820px;">2W-{{entry.h_2w}}</button>
+            <button type='submit' name="h_3w" class="btn" style="position:absolute;top:220px;left:925px;">3W-{{entry.h_3w}}</button>
+            <button type='submit' name="h_sc" class="btn" style="position:absolute;top:255px;left:820px;">SC-{{entry.h_sc}}</button>
+            <button type='submit' name="h_bc" class="btn" style="position:absolute;top:255px;left:925px;">BC-{{entry.h_bc}}</button>
+            <button type='submit' name="g_2w" class="btn" style="position:absolute;top:298px;left:820px;">2W-{{entry.g_2w}}</button>
+            <button type='submit' name="g_3w" class="btn" style="position:absolute;top:298px;left:925px;">3W-{{entry.g_3w}}</button>
+            <button type='submit' name="g_sc" class="btn" style="position:absolute;top:332px;left:820px;">SC-{{entry.g_sc}}</button>
+            <button type='submit' name="g_bc" class="btn" style="position:absolute;top:332px;left:925px;">BC-{{entry.g_bc}}</button>
+            <button type='submit' name="b_2w" class="btn" style="position:absolute;top:20px;left:1247px;">2W-{{entry.b_2w}}</button>
+            <button type='submit' name="b_3w" class="btn" style="position:absolute;top:60px;left:1247px;">3W-{{entry.b_3w}}</button>
+            <button type='submit' name="b_sc" class="btn" style="position:absolute;top:100px;left:1247px;">SC-{{entry.b_sc}}</button>
+            <button type='submit' name="b_bc" class="btn" style="position:absolute;top:140px;left:1247px;">BC-{{entry.b_bc}}</button>
+            <button type='submit' name="a_2w" class="btn" style="position:absolute;top:20px;left:1175px;">2W-{{entry.a_2w}}</button>
+            <button type='submit' name="a_3w" class="btn" style="position:absolute;top:60px;left:1175px;">3W-{{entry.a_3w}}</button>
+            <button type='submit' name="a_sc" class="btn" style="position:absolute;top:100px;left:1175px;">SC-{{entry.a_sc}}</button>
+            <button type='submit' name="a_bc" class="btn" style="position:absolute;top:140px;left:1175px;">BC-{{entry.a_bc}}</button>
+            <button type='submit' name="c_2w" class="btn" style="position:absolute;top:370px;left:1350px;">2W-{{entry.c_2w}}</button>
+            <button type='submit' name="c_3w" class="btn" style="position:absolute;top:370px;left:1455px;">3W-{{entry.c_3w}}</button>
+            <button type='submit' name="c_sc" class="btn" style="position:absolute;top:405px;left:1350px;">SC-{{entry.c_sc}}</button>
+            <button type='submit' name="c_bc" class="btn" style="position:absolute;top:405px;left:1455px;">BC-{{entry.c_bc}}</button>
+            <button type='submit' name="d_2w" class="btn" style="position:absolute;top:448px;left:1350px;">2W-{{entry.d_2w}}</button>
+            <button type='submit' name="d_3w" class="btn" style="position:absolute;top:448px;left:1455px;">3W-{{entry.d_3w}}</button>
+            <button type='submit' name="d_sc" class="btn" style="position:absolute;top:482px;left:1350px;">SC-{{entry.d_sc}}</button>
+            <button type='submit' name="d_bc" class="btn" style="position:absolute;top:482px;left:1455px;">BC-{{entry.d_bc}}</button>
+            <button type='submit' name="e_2w" class="btn" style="position:absolute;top:550px;left:1097px;">2W-{{entry.e_2w}}</button>
+            <button type='submit' name="e_3w" class="btn" style="position:absolute;top:590px;left:1097px;">3W-{{entry.e_3w}}</button>
+            <button type='submit' name="e_sc" class="btn" style="position:absolute;top:630px;left:1097px;">SC-{{entry.e_sc}}</button>
+            <button type='submit' name="e_bc" class="btn" style="position:absolute;top:670px;left:1097px;">BC-{{entry.e_bc}}</button>
+            <button type='submit' name="f_2w" class="btn" style="position:absolute;top:550px;left:1025px;">2W-{{entry.f_2w}}</button>
+            <button type='submit' name="f_3w" class="btn" style="position:absolute;top:590px;left:1025px;">3W-{{entry.f_3w}}</button>
+            <button type='submit' name="f_sc" class="btn" style="position:absolute;top:630px;left:1025px;">SC-{{entry.f_sc}}</button>
+            <button type='submit' name="f_bc" class="btn" style="position:absolute;top:670px;left:1025px;">BC-{{entry.f_bc}}</button>
+            <button type='submit' name="calculate" class="btn2" style="position:absolute;top:570px;left:850px;">Calculate</button>
+            <button type='submit' name="reset" class="btn2" style="position:absolute;top:620px;left:850px;">Reset</button>
+        </form>
     </body>
 </html>
