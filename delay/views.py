@@ -1,4 +1,5 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
+from .forms import inp
 from .models import Count
 def zero(entry):
     entry.a_2w=0
@@ -35,8 +36,20 @@ def zero(entry):
     entry.h_bc=0
     entry.save()
 def home(request):
+    p1=0
+    p2=0
+    p3=0
+    p4=0
     entry=get_object_or_404(Count,pk=1)
-    if request.method=="POST":
+    if request.method=="POST" and 'calculate' in request.POST:
+        form=inp(request.POST)
+        if form.is_valid():
+            g=form.cleaned_data.get("g_c")
+            t=form.cleaned_data.get("t")
+            C=form.cleaned_data.get("C")
+            p1=p2=p3=p4=g+t+C
+    elif request.method=="POST":
+        form=inp()
         if 'a_2w' in request.POST:
             entry.a_2w+=1
         if 'a_3w' in request.POST:
@@ -101,11 +114,10 @@ def home(request):
             entry.h_sc+=1
         if 'h_bc' in request.POST:
             entry.h_bc+=1
-        if 'calculate' in request.POST:
-            print("cal")
         if 'reset' in request.POST:
             zero(entry)
         entry.save()
     else:
+        form=inp()
         zero(entry)
-    return render(request,'delay/home.html',{'entry':entry})
+    return render(request,'delay/home.html',{'entry':entry,'form':form,'p1':p1,'p2':p2,'p3':p3,'p4':p4})

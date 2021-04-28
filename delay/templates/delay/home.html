@@ -84,6 +84,17 @@
         </script>
         <h1>UG Project</h1>
         <img src="{%static 'phases.png'%}" style="width:300px;height:300px;margin:50px;float:right" alt="alternatetext"><br>
+        <form method="POST" class="log-form">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type='submit' name="calculate" class="btn2">Calculate</button>
+        </form>
+        <div class="result">
+            <b>Average Delay (P1) = {{p1}} sec/veh</b><br>
+            <b>Average Delay (P2) = {{p2}} sec/veh</b><br>
+            <b>Average Delay (P3) = {{p3}} sec/veh</b><br>
+            <b>Average Delay (P4) = {{p4}} sec/veh</b><br>
+        </div>
         <form method="POST">
             {%csrf_token%}
             <button type='submit' name="h_2w" class="btn" style="position:absolute;top:220px;left:820px;">2W-{{entry.h_2w}}</button>
@@ -118,7 +129,6 @@
             <button type='submit' name="f_3w" class="btn" style="position:absolute;top:590px;left:1025px;">3W-{{entry.f_3w}}</button>
             <button type='submit' name="f_sc" class="btn" style="position:absolute;top:630px;left:1025px;">SC-{{entry.f_sc}}</button>
             <button type='submit' name="f_bc" class="btn" style="position:absolute;top:670px;left:1025px;">BC-{{entry.f_bc}}</button>
-            <button type='submit' name="calculate" class="btn2" style="position:absolute;top:570px;left:850px;">Calculate</button>
             <button type='submit' name="reset" class="btn2" style="position:absolute;top:620px;left:850px;">Reset</button>
         </form>
     </body>
