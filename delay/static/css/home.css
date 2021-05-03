@@ -4,7 +4,7 @@ h1{
     width:330px;
     border-style:solid;
     border-color:black;
-    margin-left:20px;
+    margin-left:30px;
     margin-top:10px;
 }
 #myCanvas{
@@ -40,5 +40,5 @@ h1{
 }
 .result{
     margin-left:30px;
-    
+    font-size:15pt;
 }
