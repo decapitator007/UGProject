@@ -32,3 +32,4 @@ class Count(models.Model):
     h_3w=models.IntegerField()
     h_sc=models.IntegerField()
     h_bc=models.IntegerField()
+#32 Buttons
