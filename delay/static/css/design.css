@@ -1,0 +1,30 @@
+h1{
+    font-size:40pt;
+    padding:30px;
+    width:680px;
+    border-style:solid;
+    border-color:black;
+    margin-left:30px;
+    margin-top:10px;
+}
+#myCanvas{
+    z-index:-1;
+    float:right;
+    margin-right:20px;
+    margin-top:5px;
+}
+.log-form{
+    color:black;
+    width:300px;
+    padding-left:30px;
+}
+.log-form input{
+    width:100%;
+    border-style:solid;
+}
+.center{
+  text-align:center;
+}
+td,th{
+  text-align: center;
+}

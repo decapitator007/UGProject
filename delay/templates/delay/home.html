@@ -1,136 +1,261 @@
 {%load static%}
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Delay</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <link rel="stylesheet" href="{%static 'css/home.css'%}">
-    </head>
-    <body>
-        <canvas id="myCanvas" width="700" height="700"></canvas>
-        <script>
-            var c=document.getElementById("myCanvas");
-            var ctx=c.getContext("2d");
-            ctx.beginPath();
-            ctx.moveTo(0,200);
-            ctx.lineTo(200,200);
-            ctx.lineTo(200,0);
-            ctx.lineWidth=3;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(500,0);
-            ctx.lineTo(500,200);
-            ctx.lineTo(700,200);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(700,500);
-            ctx.lineTo(500,500);
-            ctx.lineTo(500,700);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(200,700);
-            ctx.lineTo(200,500);
-            ctx.lineTo(0,500);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(0,350);
-            ctx.lineTo(200,350);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(350,0);
-            ctx.lineTo(350,200);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(350,700);
-            ctx.lineTo(350,500);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(700,350);
-            ctx.lineTo(500,350);
-            ctx.stroke();
-            ctx.setLineDash([5,5]);
-            ctx.beginPath();
-            ctx.moveTo(0,275);
-            ctx.lineTo(200,275);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(425,0);
-            ctx.lineTo(425,200);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(700,425);
-            ctx.lineTo(500,425);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(275,700);
-            ctx.lineTo(275,500);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(0,425);
-            ctx.lineTo(200,425);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(275,0);
-            ctx.lineTo(275,200);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(700,275);
-            ctx.lineTo(500,275);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(425,500);
-            ctx.lineTo(425,700);
-            ctx.stroke();
-        </script>
-        <h1>UG Project</h1>
-        <b style="margin-left:30px;">Yellow Time = 3 sec and Lost Time = 4 sec</b>
-        <img src="{%static 'phases.png'%}" style="width:300px;height:300px;margin:50px;float:right" alt="alternate"><br>
-        <form method="POST" class="log-form">
-            {%csrf_token%}
-            {{form.as_p}}
-            <button type='submit' name="calculate" class="btn2">Calculate</button>
-        </form>
-        <div class="result">
-            <b>Average Delay (P1) = {{p1}} sec/veh</b><br>
-            <b>Average Delay (P2) = {{p2}} sec/veh</b><br>
-            <b>Average Delay (P3) = {{p3}} sec/veh</b><br>
-            <b>Average Delay (P4) = {{p4}} sec/veh</b><br>
+  <head>
+    <title>Delay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{%static 'css/design.css'%}">
+  </head>
+  <body>
+    <canvas id="myCanvas" width="700" height="700"></canvas>
+    <script>
+      var c=document.getElementById("myCanvas");
+      var ctx=c.getContext("2d");
+      ctx.beginPath();
+      ctx.moveTo(0,200);
+      ctx.lineTo(200,200);
+      ctx.lineTo(200,0);
+      ctx.lineWidth=3;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(500,0);
+      ctx.lineTo(500,200);
+      ctx.lineTo(700,200);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(700,500);
+      ctx.lineTo(500,500);
+      ctx.lineTo(500,700);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(200,700);
+      ctx.lineTo(200,500);
+      ctx.lineTo(0,500);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0,350);
+      ctx.lineTo(200,350);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(350,0);
+      ctx.lineTo(350,200);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(350,700);
+      ctx.lineTo(350,500);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(700,350);
+      ctx.lineTo(500,350);
+      ctx.stroke();
+      ctx.setLineDash([5,5]);
+      ctx.beginPath();
+      ctx.moveTo(0,275);
+      ctx.lineTo(200,275);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(425,0);
+      ctx.lineTo(425,200);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(700,425);
+      ctx.lineTo(500,425);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(275,700);
+      ctx.lineTo(275,500);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0,425);
+      ctx.lineTo(200,425);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(275,0);
+      ctx.lineTo(275,200);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(700,275);
+      ctx.lineTo(500,275);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(425,500);
+      ctx.lineTo(425,700);
+      ctx.stroke();
+    </script>
+    <h1>Average Delay Calculator</h1>
+    <b style="margin-left:30px;">Yellow Time = 3 sec and Lost Time = 4 sec</b>
+    <img src="{%static 'phases.png'%}" style="width:300px;height:300px;margin:50px;float:right" alt="alternate"><br>
+    <form action="{%url 'home'%}" method="post" enctype="multipart/form-data" class="log-form">
+      {%csrf_token%}
+      {{form.as_p}}
+      <label for="ff">Vehicle Count Data:</label>
+      <input id="ff" type="file" title="Upload excel file" name="excel_file" style="border:1px solid black;padding:5px;" required="required">
+      <a style="text-decoration:none;" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">(Instructions)</a>
+      <br><br>
+      <input type="submit" value="Calculate">
+    </form>
+      <h5 style="position:absolute;top:240px;left:890px;">D</h5>
+      <h5 style="position:absolute;top:318px;left:890px;">C</h5>
+      <h5 style="position:absolute;top:100px;left:1267px;">F</h5>
+      <h5 style="position:absolute;top:100px;left:1195px;">E</h5>
+      <h5 style="position:absolute;top:390px;left:1420px;">G</h5>
+      <h5 style="position:absolute;top:468px;left:1420px;">H</h5>
+      <h5 style="position:absolute;top:590px;left:1117px;">A</h5>
+      <h5 style="position:absolute;top:590px;left:1045px;">B</h5>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Instructions for Excel File</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-striped table-hover table-borderless">
+                <thead class="table-info">
+                  <tr>
+                    <th>Column</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>A</td>
+                    <td>Time</td>
+                  </tr>
+                  <tr>
+                    <td>B</td>
+                    <td>2 Wheelers in Lane A</td>
+                  </tr>
+                  <tr>
+                    <td>C</td>
+                    <td>3 Wheelers in Lane A</td>
+                  </tr>
+                  <tr>
+                    <td>D</td>
+                    <td>Small Cars in Lane A</td>
+                  </tr>
+                  <tr>
+                    <td>E</td>
+                    <td>Big Cars in Lane A</td>
+                  </tr>
+                  <tr>
+                    <td>F</td>
+                    <td>2 Wheelers in Lane B</td>
+                  </tr>
+                  <tr>
+                    <td>G</td>
+                    <td>3 Wheelers in Lane B</td>
+                  </tr>
+                  <tr>
+                    <td>H</td>
+                    <td>Small Cars in Lane B</td>
+                  </tr>
+                  <tr>
+                    <td>I</td>
+                    <td>Big Cars in Lane B</td>
+                  </tr>
+                  <tr>
+                    <td>J</td>
+                    <td>2 Wheelers in Lane C</td>
+                  </tr>
+                  <tr>
+                    <td>K</td>
+                    <td>3 Wheelers in Lane C</td>
+                  </tr>
+                  <tr>
+                    <td>L</td>
+                    <td>Small Cars in Lane C</td>
+                  </tr>
+                  <tr>
+                    <td>M</td>
+                    <td>Big Cars in Lane C</td>
+                  </tr>
+                  <tr>
+                    <td>N</td>
+                    <td>2 Wheelers in Lane D</td>
+                  </tr>
+                  <tr>
+                    <td>O</td>
+                    <td>3 Wheelers in Lane D</td>
+                  </tr>
+                  <tr>
+                    <td>P</td>
+                    <td>Small Cars in Lane D</td>
+                  </tr>
+                  <tr>
+                    <td>Q</td>
+                    <td>Big Cars in Lane D</td>
+                  </tr>
+                  <tr>
+                    <td>R</td>
+                    <td>2 Wheelers in Lane E</td>
+                  </tr>
+                  <tr>
+                    <td>S</td>
+                    <td>3 Wheelers in Lane E</td>
+                  </tr>
+                  <tr>
+                    <td>T</td>
+                    <td>Small Cars in Lane E</td>
+                  </tr>
+                  <tr>
+                    <td>U</td>
+                    <td>Big Cars in Lane E</td>
+                  </tr>
+                  <tr>
+                    <td>V</td>
+                    <td>2 Wheelers in Lane F</td>
+                  </tr>
+                  <tr>
+                    <td>W</td>
+                    <td>3 Wheelers in Lane F</td>
+                  </tr>
+                  <tr>
+                    <td>X</td>
+                    <td>Small Cars in Lane F</td>
+                  </tr>
+                  <tr>
+                    <td>Y</td>
+                    <td>Big Cars in Lane F</td>
+                  </tr>
+                  <tr>
+                    <td>Z</td>
+                    <td>2 Wheelers in Lane G</td>
+                  </tr>
+                  <tr>
+                    <td>AA</td>
+                    <td>3 Wheelers in Lane G</td>
+                  </tr>
+                  <tr>
+                    <td>AB</td>
+                    <td>Small Cars in Lane G</td>
+                  </tr>
+                  <tr>
+                    <td>AC</td>
+                    <td>Big Cars in Lane G</td>
+                  </tr>
+                  <tr>
+                    <td>AD</td>
+                    <td>2 Wheelers in Lane H</td>
+                  </tr>
+                  <tr>
+                    <td>AE</td>
+                    <td>3 Wheelers in Lane H</td>
+                  </tr>
+                  <tr>
+                    <td>AF</td>
+                    <td>Small Cars in Lane H</td>
+                  </tr>
+                  <tr>
+                    <td>AG</td>
+                    <td>Big Cars in Lane H</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-        <form method="POST">
-            {%csrf_token%}
-            <button type='submit' name="h_2w" class="btn" style="position:absolute;top:220px;left:820px;">2W-{{entry.h_2w}}</button>
-            <button type='submit' name="h_3w" class="btn" style="position:absolute;top:220px;left:925px;">3W-{{entry.h_3w}}</button>
-            <button type='submit' name="h_sc" class="btn" style="position:absolute;top:255px;left:820px;">SC-{{entry.h_sc}}</button>
-            <button type='submit' name="h_bc" class="btn" style="position:absolute;top:255px;left:925px;">BC-{{entry.h_bc}}</button>
-            <button type='submit' name="g_2w" class="btn" style="position:absolute;top:298px;left:820px;">2W-{{entry.g_2w}}</button>
-            <button type='submit' name="g_3w" class="btn" style="position:absolute;top:298px;left:925px;">3W-{{entry.g_3w}}</button>
-            <button type='submit' name="g_sc" class="btn" style="position:absolute;top:332px;left:820px;">SC-{{entry.g_sc}}</button>
-            <button type='submit' name="g_bc" class="btn" style="position:absolute;top:332px;left:925px;">BC-{{entry.g_bc}}</button>
-            <button type='submit' name="b_2w" class="btn" style="position:absolute;top:20px;left:1247px;">2W-{{entry.b_2w}}</button>
-            <button type='submit' name="b_3w" class="btn" style="position:absolute;top:60px;left:1247px;">3W-{{entry.b_3w}}</button>
-            <button type='submit' name="b_sc" class="btn" style="position:absolute;top:100px;left:1247px;">SC-{{entry.b_sc}}</button>
-            <button type='submit' name="b_bc" class="btn" style="position:absolute;top:140px;left:1247px;">BC-{{entry.b_bc}}</button>
-            <button type='submit' name="a_2w" class="btn" style="position:absolute;top:20px;left:1175px;">2W-{{entry.a_2w}}</button>
-            <button type='submit' name="a_3w" class="btn" style="position:absolute;top:60px;left:1175px;">3W-{{entry.a_3w}}</button>
-            <button type='submit' name="a_sc" class="btn" style="position:absolute;top:100px;left:1175px;">SC-{{entry.a_sc}}</button>
-            <button type='submit' name="a_bc" class="btn" style="position:absolute;top:140px;left:1175px;">BC-{{entry.a_bc}}</button>
-            <button type='submit' name="c_2w" class="btn" style="position:absolute;top:370px;left:1350px;">2W-{{entry.c_2w}}</button>
-            <button type='submit' name="c_3w" class="btn" style="position:absolute;top:370px;left:1455px;">3W-{{entry.c_3w}}</button>
-            <button type='submit' name="c_sc" class="btn" style="position:absolute;top:405px;left:1350px;">SC-{{entry.c_sc}}</button>
-            <button type='submit' name="c_bc" class="btn" style="position:absolute;top:405px;left:1455px;">BC-{{entry.c_bc}}</button>
-            <button type='submit' name="d_2w" class="btn" style="position:absolute;top:448px;left:1350px;">2W-{{entry.d_2w}}</button>
-            <button type='submit' name="d_3w" class="btn" style="position:absolute;top:448px;left:1455px;">3W-{{entry.d_3w}}</button>
-            <button type='submit' name="d_sc" class="btn" style="position:absolute;top:482px;left:1350px;">SC-{{entry.d_sc}}</button>
-            <button type='submit' name="d_bc" class="btn" style="position:absolute;top:482px;left:1455px;">BC-{{entry.d_bc}}</button>
-            <button type='submit' name="e_2w" class="btn" style="position:absolute;top:550px;left:1097px;">2W-{{entry.e_2w}}</button>
-            <button type='submit' name="e_3w" class="btn" style="position:absolute;top:590px;left:1097px;">3W-{{entry.e_3w}}</button>
-            <button type='submit' name="e_sc" class="btn" style="position:absolute;top:630px;left:1097px;">SC-{{entry.e_sc}}</button>
-            <button type='submit' name="e_bc" class="btn" style="position:absolute;top:670px;left:1097px;">BC-{{entry.e_bc}}</button>
-            <button type='submit' name="f_2w" class="btn" style="position:absolute;top:550px;left:1025px;">2W-{{entry.f_2w}}</button>
-            <button type='submit' name="f_3w" class="btn" style="position:absolute;top:590px;left:1025px;">3W-{{entry.f_3w}}</button>
-            <button type='submit' name="f_sc" class="btn" style="position:absolute;top:630px;left:1025px;">SC-{{entry.f_sc}}</button>
-            <button type='submit' name="f_bc" class="btn" style="position:absolute;top:670px;left:1025px;">BC-{{entry.f_bc}}</button>
-            <button type='submit' name="reset" class="btn2" style="position:absolute;top:620px;left:850px;">Reset</button>
-        </form>
-    </body>
+      </div>
+  </body>
 </html>

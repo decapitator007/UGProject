@@ -1,41 +1,14 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render,get_object_or_404,redirect
 from .forms import inp
-from .models import Count
 import decimal
-def zero(entry):
-    entry.a_2w=0
-    entry.a_3w=0
-    entry.a_sc=0
-    entry.a_bc=0
-    entry.b_2w=0
-    entry.b_3w=0
-    entry.b_sc=0
-    entry.b_bc=0
-    entry.c_2w=0
-    entry.c_3w=0
-    entry.c_sc=0
-    entry.c_bc=0
-    entry.d_2w=0
-    entry.d_3w=0
-    entry.d_sc=0
-    entry.d_bc=0
-    entry.e_2w=0
-    entry.e_3w=0
-    entry.e_sc=0
-    entry.e_bc=0
-    entry.f_2w=0
-    entry.f_3w=0
-    entry.f_sc=0
-    entry.f_bc=0
-    entry.g_2w=0
-    entry.g_3w=0
-    entry.g_sc=0
-    entry.g_bc=0
-    entry.h_2w=0
-    entry.h_3w=0
-    entry.h_sc=0
-    entry.h_bc=0
-    entry.save()
+import math
+import openpyxl
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import io
+import urllib,base64
+import numpy as np
 def uniform(C,g,v,c):
     f=(((1-g)**2)*C)/2
     f/=(1-(g*(v/c)))
@@ -78,102 +51,92 @@ def phase(v1,v2,s1,s2,t,C,g):
     f=round(f,2)
     return f
 def home(request):
-    p1=0
-    p2=0
-    p3=0
-    p4=0
-    entry=get_object_or_404(Count,pk=1)
-    if request.method=="POST" and 'calculate' in request.POST:
+    if request.method=="POST":
         form=inp(request.POST)
         if form.is_valid():
             g1=form.cleaned_data.get("g_1")
             g2=form.cleaned_data.get("g_2")
             g3=form.cleaned_data.get("g_3")
             g4=form.cleaned_data.get("g_4")
-            t=form.cleaned_data.get("t")
             C=g1+g2+g3+g4+20
             g1/=C
             g2/=C
             g3/=C
             g4/=C
-            s1=saturation(entry.a_2w,entry.b_2w,entry.a_3w,entry.b_3w,entry.a_sc,entry.b_sc,entry.a_bc,entry.b_bc,t)
-            s2=saturation(entry.c_2w,entry.d_2w,entry.c_3w,entry.d_3w,entry.c_sc,entry.d_sc,entry.c_bc,entry.d_bc,t)
-            s3=saturation(entry.e_2w,entry.f_2w,entry.e_3w,entry.f_3w,entry.e_sc,entry.f_sc,entry.e_bc,entry.f_bc,t)
-            s4=saturation(entry.g_2w,entry.h_2w,entry.g_3w,entry.h_3w,entry.g_sc,entry.h_sc,entry.g_bc,entry.h_bc,t)
-            p1=phase(pcu(entry.b_2w,entry.b_3w,entry.b_sc,entry.b_bc)/t,pcu(entry.f_2w,entry.f_3w,entry.f_sc,entry.f_bc)/t,s1,s3,t,C,g1)
-            p2=phase(pcu(entry.a_2w,entry.a_3w,entry.a_sc,entry.a_bc)/t,pcu(entry.e_2w,entry.e_3w,entry.e_sc,entry.e_bc)/t,s1,s3,t,C,g2)
-            p3=phase(pcu(entry.d_2w,entry.d_3w,entry.d_sc,entry.d_bc)/t,pcu(entry.h_2w,entry.h_3w,entry.h_sc,entry.h_bc)/t,s2,s4,t,C,g3)
-            p4=phase(pcu(entry.c_2w,entry.c_3w,entry.c_sc,entry.c_bc)/t,pcu(entry.g_2w,entry.g_3w,entry.g_sc,entry.g_bc)/t,s2,s4,t,C,g4)
-    elif request.method=="POST":
-        form=inp()
-        if 'a_2w' in request.POST:
-            entry.a_2w+=1
-        if 'a_3w' in request.POST:
-            entry.a_3w+=1
-        if 'a_sc' in request.POST:
-            entry.a_sc+=1
-        if 'a_bc' in request.POST:
-            entry.a_bc+=1
-        if 'b_2w' in request.POST:
-            entry.b_2w+=1
-        if 'b_3w' in request.POST:
-            entry.b_3w+=1
-        if 'b_sc' in request.POST:
-            entry.b_sc+=1
-        if 'b_bc' in request.POST:
-            entry.b_bc+=1
-        if 'c_2w' in request.POST:
-            entry.c_2w+=1
-        if 'c_3w' in request.POST:
-            entry.c_3w+=1
-        if 'c_sc' in request.POST:
-            entry.c_sc+=1
-        if 'c_bc' in request.POST:
-            entry.c_bc+=1
-        if 'd_2w' in request.POST:
-            entry.d_2w+=1
-        if 'd_3w' in request.POST:
-            entry.d_3w+=1
-        if 'd_sc' in request.POST:
-            entry.d_sc+=1
-        if 'd_bc' in request.POST:
-            entry.d_bc+=1
-        if 'e_2w' in request.POST:
-            entry.e_2w+=1
-        if 'e_3w' in request.POST:
-            entry.e_3w+=1
-        if 'e_sc' in request.POST:
-            entry.e_sc+=1
-        if 'e_bc' in request.POST:
-            entry.e_bc+=1
-        if 'f_2w' in request.POST:
-            entry.f_2w+=1
-        if 'f_3w' in request.POST:
-            entry.f_3w+=1
-        if 'f_sc' in request.POST:
-            entry.f_sc+=1
-        if 'f_bc' in request.POST:
-            entry.f_bc+=1
-        if 'g_2w' in request.POST:
-            entry.g_2w+=1
-        if 'g_3w' in request.POST:
-            entry.g_3w+=1
-        if 'g_sc' in request.POST:
-            entry.g_sc+=1
-        if 'g_bc' in request.POST:
-            entry.g_bc+=1
-        if 'h_2w' in request.POST:
-            entry.h_2w+=1
-        if 'h_3w' in request.POST:
-            entry.h_3w+=1
-        if 'h_sc' in request.POST:
-            entry.h_sc+=1
-        if 'h_bc' in request.POST:
-            entry.h_bc+=1
-        if 'reset' in request.POST:
-            zero(entry)
-        entry.save()
+            ans1=list()
+            ans2=list()
+            ans3=list()
+            ans4=list()
+            time=list()
+            excel_file=request.FILES["excel_file"]
+            wb=openpyxl.load_workbook(excel_file)
+            worksheet=wb["Sheet1"]
+            for row in worksheet.iter_rows():
+                row_data=list()
+                for cell in row:
+                    row_data.append(int(str(cell.value)))
+                t=row_data[0]
+                s1=saturation(row_data[1],row_data[5],row_data[2],row_data[6],row_data[3],row_data[7],row_data[4],row_data[8],t)
+                s2=saturation(row_data[9],row_data[13],row_data[10],row_data[14],row_data[11],row_data[15],row_data[12],row_data[16],t)
+                s3=saturation(row_data[17],row_data[21],row_data[18],row_data[22],row_data[19],row_data[23],row_data[20],row_data[24],t)
+                s4=saturation(row_data[25],row_data[29],row_data[26],row_data[30],row_data[27],row_data[31],row_data[28],row_data[32],t)
+                p1=phase(pcu(row_data[5],row_data[6],row_data[7],row_data[8])/t,pcu(row_data[21],row_data[22],row_data[23],row_data[24])/t,s1,s3,t,C,g1)
+                p2=phase(pcu(row_data[1],row_data[2],row_data[3],row_data[4])/t,pcu(row_data[17],row_data[18],row_data[19],row_data[20])/t,s1,s3,t,C,g2)
+                p3=phase(pcu(row_data[13],row_data[14],row_data[15],row_data[16])/t,pcu(row_data[29],row_data[30],row_data[31],row_data[32])/t,s2,s4,t,C,g3)
+                p4=phase(pcu(row_data[9],row_data[10],row_data[11],row_data[12])/t,pcu(row_data[25],row_data[26],row_data[27],row_data[28])/t,s2,s4,t,C,g4)
+                ans1.append(p1)
+                ans2.append(p2)
+                ans3.append(p3)
+                ans4.append(p4)
+                time.append(t)
+            plt.plot(time,ans1,marker='o',linestyle='--',color='r')
+            # plt.xticks(np.arange(min(time),max(time)+1,0.5))
+            # plt.yticks(np.arange(math.floor(min(ans1)),math.ceil(max(ans1))+1,1))
+            plt.title("Phase 1")
+            plt.ylabel("Average Delay (sec/veh)")
+            plt.xlabel("Time (sec)")
+            fig=plt.gcf()
+            buf=io.BytesIO()
+            fig.savefig(buf,format='png')
+            buf.seek(0)
+            string=base64.b64encode(buf.read())
+            uri1=urllib.parse.quote(string)
+            plt.clf()
+            plt.plot(time,ans2,marker='o',linestyle='--',color='r')
+            plt.title("Phase 2")
+            plt.ylabel("Average Delay (sec/veh)")
+            plt.xlabel("Time (sec)")
+            fig=plt.gcf()
+            buf=io.BytesIO()
+            fig.savefig(buf,format='png')
+            buf.seek(0)
+            string=base64.b64encode(buf.read())
+            uri2=urllib.parse.quote(string)
+            plt.clf()
+            plt.plot(time,ans3,marker='o',linestyle='--',color='r')
+            plt.title("Phase 3")
+            plt.ylabel("Average Delay (sec/veh)")
+            plt.xlabel("Time (sec)")
+            fig=plt.gcf()
+            buf=io.BytesIO()
+            fig.savefig(buf,format='png')
+            buf.seek(0)
+            string=base64.b64encode(buf.read())
+            uri3=urllib.parse.quote(string)
+            plt.clf()
+            plt.plot(time,ans4,marker='o',linestyle='--',color='r')
+            plt.title("Phase 4")
+            plt.ylabel("Average Delay (sec/veh)")
+            plt.xlabel("Time (sec)")
+            fig=plt.gcf()
+            buf=io.BytesIO()
+            fig.savefig(buf,format='png')
+            buf.seek(0)
+            string=base64.b64encode(buf.read())
+            uri4=urllib.parse.quote(string)
+            plt.clf()
+            mylist=zip(time,ans1,ans2,ans3,ans4)
+            return render(request,'delay/index.html',{"data1":uri1,"data2":uri2,"data3":uri3,"data4":uri4,"mylist":mylist})
     else:
         form=inp()
-        zero(entry)
-    return render(request,'delay/home.html',{'entry':entry,'form':form,'p1':p1,'p2':p2,'p3':p3,'p4':p4})
+        return render(request,'delay/home.html',{'form':form})
